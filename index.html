@@ -20,6 +20,9 @@
   4. Photo: replace the placeholder <div class="portrait"> with
      an <img src="your-photo.jpg" alt="Nigar Sultana"> tag if you
      want a real photo instead of the initials mark.
+  5. Top nav bar: find <nav class="topnav"> near the top of <body>.
+     Each link's href (e.g. "#about") must match a section's id
+     (e.g. <section id="about">) for the jump-to-section to work.
   ============================================================
 -->
 
@@ -71,6 +74,29 @@
   }
   .refbar .dot { color: var(--accent); }
 
+  /* ---------- TOP NAV ---------- */
+  nav.topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(20,33,61,0.03);
+  }
+  nav.topnav .wrap {
+    display: flex; gap: 4px;
+    overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
+  }
+  nav.topnav .wrap::-webkit-scrollbar { display: none; }
+  nav.topnav a {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.03em;
+    color: var(--ink-soft); white-space: nowrap;
+    padding: 14px 12px; border-bottom: 2px solid transparent;
+  }
+  nav.topnav a:hover {
+    color: var(--accent); text-decoration: none; border-bottom-color: var(--accent-soft);
+  }
+
+  /* offset anchored sections so the sticky nav doesn't cover the heading */
+  section, footer { scroll-margin-top: 52px; }
+
   header.hero { padding: 60px 0 40px; }
   .hero-grid {
     display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
@@ -116,7 +142,7 @@
   .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
   .section-num { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
   h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--ink); }
-  p.lead { max-width: 66ch; color: var(--ink-soft); font-size: 0.96rem; }
+  p.lead { max-width: 66ch; color: var(--ink-soft); font-size: 0.96rem; text-align: justify; hyphens: auto; }
 
   .entry {
     display: grid; grid-template-columns: 150px 1fr; gap: 20px;
@@ -126,11 +152,11 @@
   .entry-date { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); padding-top: 3px; }
   .entry-title { font-weight: 600; color: var(--ink); font-size: 1rem; }
   .entry-org { color: var(--ink-soft); font-size: 0.92rem; margin-top: 2px; }
-  .entry-desc { margin-top: 8px; color: var(--ink-soft); font-size: 0.92rem; max-width: 58ch; }
+  .entry-desc { margin-top: 8px; color: var(--ink-soft); font-size: 0.92rem; max-width: 58ch; text-align: justify; hyphens: auto; }
   .entry-desc ul { margin-top: 6px; padding-left: 18px; }
-  .entry-desc li { margin-bottom: 5px; }
+  .entry-desc li { margin-bottom: 5px; text-align: justify; hyphens: auto; }
 
-  .pub { padding: 13px 0; border-bottom: 1px dashed var(--line); font-size: 0.92rem; color: var(--ink-soft); }
+  .pub { padding: 13px 0; border-bottom: 1px dashed var(--line); font-size: 0.92rem; color: var(--ink-soft); text-align: justify; hyphens: auto; }
   .pub:last-child { border-bottom: none; }
   .pub-tag {
     display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em;
@@ -187,6 +213,21 @@
       <span>Updated August 2026</span>
     </div>
   </div>
+
+  <!-- ============ TOP NAV ============ -->
+  <!-- EDIT ME: add/remove/reorder links here. Each href must match a
+       section's id below (e.g. href="#about" -> <section id="about">) -->
+  <nav class="topnav">
+    <div class="wrap">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Professional Experience</a>
+      <a href="#research">Academic &amp; Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
   <header class="hero">
     <div class="wrap">
